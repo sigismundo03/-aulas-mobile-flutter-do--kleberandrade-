@@ -1,17 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 
 class ImcController extends GetxController {
  var result = 'Informe seus dados'.obs;
  var peso = ''.obs;
  var altura = ''.obs;
+ var controllerpeso = TextEditingController().obs;
+ var controlleraltura = TextEditingController().obs;
 
 
  void getPeso(String peso){
    this.peso.value = peso;
  }
- void getAltura(String altura){
-   this.altura.value = altura;
- }
+ void getAltura(String altura) =>   this.altura.value = altura;
+ 
  
  String validatorPeso(String peso){
    return peso.isEmpty ? "Insira seu peso!": null;
@@ -23,8 +25,10 @@ class ImcController extends GetxController {
  
  void resetFields() {
    result.value = 'Informe seus dados';
-   peso.value = '';
-   altura.value = '';
+   controllerpeso.value.text = '';
+   controlleraltura.value.text = '';
+   peso.value = controllerpeso.value.text;
+   altura.value =controlleraltura.value.text;
  } 
 
  void calculateImc(){

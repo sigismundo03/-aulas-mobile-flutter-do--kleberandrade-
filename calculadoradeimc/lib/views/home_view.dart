@@ -22,23 +22,35 @@ class HomeView extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-            child: Column(
+            child:   GetX<ImcController>(
+              builder: ( snapshot) {
+               return Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InputWidget("Peso(KG)", imcController.getPeso,  imcController.validatorPeso, ),
-                InputWidget("Altura(cm)", imcController.getAltura,  imcController.validatoraltura,),
+                InputWidget("Peso(KG)", imcController.getPeso,  imcController.validatorPeso, snapshot.controllerpeso.value),
+                InputWidget("Altura(cm)", imcController.getAltura,  imcController.validatoraltura, snapshot.controlleraltura.value),
                 SizedBox(height: 12,),
-              GetX<ImcController>(
-                builder: ( snapshot) {
-                  return Text( snapshot.result.value, 
+             Text( snapshot.result.value, 
              
                      textAlign: TextAlign.center,
         
-                   );
-                }
-              ),
+                   ),
+                
+          // ToggleButtons(
+          //       children: <Widget>[
+          //         Icon(Icons.pregnant_woman),
+          //         Icon(Icons.person),
+          //       ],
+          //       onPressed: (int index){}, 
+          //       isSelected: [
+
+          //       ],
+          //   ),
+
                 BotaoWidget(imcController.calculateImc),
               ],
+            );
+              }
             ),
 
         ),
