@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class DrawerWidget extends StatelessWidget {
   @override
@@ -56,6 +57,8 @@ class DrawerWidget extends StatelessWidget {
 
             ),
             onTap: (){
+              Get.back();
+             Get.offNamed("/");
 
             },
             
@@ -76,7 +79,7 @@ class DrawerWidget extends StatelessWidget {
              
              ),
             onTap: (){
-              
+                 Get.offNamed("/historico");
             },
           ),
         ),
