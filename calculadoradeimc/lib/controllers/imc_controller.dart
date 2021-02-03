@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ImcController extends GetxController {
+  
  var historicodepeso = List<Pessoa>().obs;
   Pessoa pessoa  = Pessoa();
   var color  = Color(1).obs; 

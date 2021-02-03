@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/input_widget.dart';
 import '../widgets/botao_widget.dart';
+import '../widgets/drawer_widegt.dart';
 
 // ignore: must_be_immutable
 class HomeView extends StatelessWidget {
@@ -24,6 +25,9 @@ class HomeView extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.white,
+      drawer: Drawer(
+        child: DrawerWidget(),
+      ),
       body: SingleChildScrollView(
         child: GetX<ImcController>(
           initState: (_){
