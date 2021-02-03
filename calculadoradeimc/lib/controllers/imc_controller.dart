@@ -1,6 +1,6 @@
 import 'package:calculadoradeimc/models/pessoa_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 
 class ImcController extends GetxController {
  var historicodepeso = List<Pessoa>().obs;
@@ -36,7 +36,14 @@ class ImcController extends GetxController {
    }
   
   }
- 
+ void limpsToggleButtons(){
+    for( int i = 0; i < selectionsBotoes.length; i++){
+     
+        selectionsBotoes[i] = false;  
+      
+      
+   }
+ }
 
  void resetFields() {
    result.value = 'Informe seus dados';
@@ -45,17 +52,23 @@ class ImcController extends GetxController {
    color.value = Colors.black;
    this.pessoa.peso = controllerpeso.value.text;
   this.pessoa.altura =controlleraltura.value.text;
-  selections(0);
+  limpsToggleButtons();
  } 
 
  void calculateImc(){
-     if(this.pessoa.peso.isNotEmpty && this.pessoa.peso.isNotEmpty  ){
+     if(this.pessoa.peso.isNotEmpty && this.pessoa.altura.isNotEmpty && (selectionsBotoes[0] || selectionsBotoes[1]) ){
         double weight = double.parse(this.pessoa.peso);
         double height = double.parse(this.pessoa.altura) / 100.0;
         double imc = weight / (height * height);
         resultado(imc);
      }else{
-       
+       Get.snackbar(
+        'Error',
+        ' Dados  invalidos!',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        
+      );
      }
     
  }

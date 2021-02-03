@@ -7,6 +7,7 @@ import '../widgets/botao_widget.dart';
 // ignore: must_be_immutable
 class HomeView extends StatelessWidget {
   final ImcController imcController = Get.put(ImcController());
+  
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,12 @@ class HomeView extends StatelessWidget {
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: GetX<ImcController>(builder: (snapshot) {
+        child: GetX<ImcController>(
+          initState: (_){
+             imcController.resetFields();
+          },
+         
+          builder: (snapshot){
           return Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
