@@ -1,11 +1,15 @@
+import 'dart:math';
+
 import 'package:calculadoradeimc/models/pessoa_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
+// import 'dart:math';
+ import 'package:get/get.dart';
 
 class ImcController extends GetxController {
   
  var historicodepeso = List<Pessoa>().obs;
-  Pessoa pessoa  = Pessoa();
+  Pessoa pessoa = Pessoa();
   var color  = Color(1).obs; 
   var selectionsBotoes = List.generate(2, (_)=> false).obs;
  var result = 'Informe seus dados'.obs;
@@ -98,14 +102,25 @@ class ImcController extends GetxController {
        color.value = Colors.redAccent[700];
        
     }
-      
+    pessoa.imc =  result.value;
     sexo();
     addPessoa();
    
  }
 
  void addPessoa(){
-    historicodepeso.add(pessoa);
+  final pessoas = Pessoa(
+    id: Random().nextDouble().toString(),
+    altura: pessoa.altura,
+    sexo: pessoa.sexo,
+    peso: pessoa.peso,
+    imc:pessoa.imc,
+    
+    );
+
+   historicodepeso.add(pessoas);
+    
+    
  }
 
 
